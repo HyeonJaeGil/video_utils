@@ -37,17 +37,17 @@ int main(){
 
   while(1){
 
-    Mat frame;
+    std::unique_ptr<cv::Mat> frame_ptr = std::make_unique<cv::Mat>();
 
     // Capture frame-by-frame
-    cap >> frame;
+    cap >> *frame_ptr;
  
     // If the frame is empty, break immediately
-    if (frame.empty())
+    if (frame_ptr->empty())
       break;
 
     // Display the resulting frame
-    imshow( "Frame", frame );
+    imshow( "Frame", *frame_ptr );
 
     // Press  ESC on keyboard to exit
     char c=(char)waitKey(25);
@@ -59,7 +59,7 @@ int main(){
     cout << "fps of the video : " << fps << endl;
 
     //check frame size
-    cv::Size frame_size = frame.size();
+    cv::Size frame_size = frame_ptr->size();
     std::cout << "width : " << frame_size.width << ", height : "<< frame_size.height <<std::endl;
 
 

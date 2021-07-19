@@ -1,6 +1,7 @@
 #include "opencv2/opencv.hpp"
 #include <iostream>
 #include <string>
+#include <memory>
 
 using namespace std;
 using namespace cv;
@@ -43,16 +44,16 @@ int main(){
 
     static int frame_count = 0;
 
-    Mat frame;
+    std::unique_ptr<cv::Mat> frame_ptr = std::make_unique<cv::Mat>();
     // Capture frame-by-frame
-    cap >> frame;
- 
+    cap >> *frame_ptr;
+
     // If the frame is empty, break immediately
-    if (frame.empty())
+    if (frame_ptr->empty())
       break;
 
     // cout << save_path + to_string(frame_count) + ".png" << endl;
-    imwrite (save_path + to_string(frame_count) + ".png", frame);
+    imwrite (save_path + to_string(frame_count) + ".png", *frame_ptr);
 
     // Press  ESC on keyboard to exit
     char c=(char)waitKey(25);
@@ -60,6 +61,14 @@ int main(){
       break;
 
     frame_count++;
+
+    //check fps of the video
+    double fps = cap.get(CAP_PROP_FPS);
+    cout << "fps of the video : " << fps << endl;
+
+    //check frame size
+    cv::Size frame_size = frame_ptr->size();
+    std::cout << "width : " << frame_size.width << ", height : "<< frame_size.height <<std::endl;
   }
  
   // When everything done, release the video capture object
