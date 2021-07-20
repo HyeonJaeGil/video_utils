@@ -12,3 +12,9 @@ TARGET_LINK_LIBRARIES(display_video ${OpenCV_LIBS})
 
 ADD_EXECUTABLE(save_video src/save_video.cpp)
 TARGET_LINK_LIBRARIES(save_video ${OpenCV_LIBS})
+
+ADD_EXECUTABLE(detect_marker src/detect_marker.cpp)
+TARGET_LINK_LIBRARIES(detect_marker ${OpenCV_LIBS})
+
+ADD_EXECUTABLE(create_marker src/create_marker.cpp)
+TARGET_LINK_LIBRARIES(create_marker ${OpenCV_LIBS})
