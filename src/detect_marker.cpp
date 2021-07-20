@@ -37,8 +37,11 @@ int main(){
   cap.set(cv::CAP_PROP_FPS, 30);
   // cap.set(cv::CAP_PROP_MONOCHROME, true);
 
-  cv::Mat cameraMatrix;
-  cv::Mat distCoeffs;
+  cv::Mat cameraMatrix = ( Mat_<double>(3,3)<< 4.8325697765087983e+02, 0., 3.2249123845863045e+02, 0.,
+       4.8318579181728722e+02, 2.3958406604380093e+02, 0., 0., 1. );
+  cv::Mat distCoeffs  = (Mat_<double>(5,1) << -4.5624292545288403e-01, 3.2720310258928254e-01,
+       7.5246312212940537e-05, 6.5448087382331561e-04,
+       -1.8906774851318395e-01 );
 
   while (cap.grab()){
 
@@ -68,7 +71,7 @@ int main(){
       cv::aruco::drawDetectedMarkers(copy_frame, markerCorners, markerIds);
 
       std::vector<cv::Vec3d> rvecs, tvecs;
-      cv::aruco::estimatePoseSingleMarkers(markerCorners, 0.05, cameraMatrix, distCoeffs, rvecs, tvecs);
+      cv::aruco::estimatePoseSingleMarkers(markerCorners, 0.1, cameraMatrix, distCoeffs, rvecs, tvecs);
       // draw axis for each marker
       for(int i=0; i<markerIds.size(); i++)
           cv::aruco::drawAxis(copy_frame, cameraMatrix, distCoeffs, rvecs[i], tvecs[i], 0.1);
@@ -81,7 +84,7 @@ int main(){
     if(c==27)
       break;
 
-    //check fps of the video
+    // check fps of the video
     // double fps = cap.get(CAP_PROP_FPS);
     // cout << "fps of the video : " << fps << endl;
 
