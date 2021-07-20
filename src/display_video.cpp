@@ -16,7 +16,7 @@ int main(){
   // cap(file_name); 
 
   // open webcam device
-  int deviceID = 6;
+  int deviceID = 4;
   int apiID = cv::CAP_V4L2;
   cap.open(deviceID, apiID);
 
@@ -36,7 +36,7 @@ int main(){
   cap.set(cv::CAP_PROP_FPS, 30);
   // cap.set(cv::CAP_PROP_MONOCHROME, true);
 
-  while(1){
+  while(cap.grab()){
 
     std::unique_ptr<cv::Mat> frame_ptr = std::make_unique<cv::Mat>();
 
