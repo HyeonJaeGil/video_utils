@@ -19,7 +19,7 @@ int main(){
   // cap(file_name); 
 
   // open webcam device
-  int deviceID = 6;
+  int deviceID = 4;
   int apiID = cv::CAP_V4L2;
   cap.open(deviceID, apiID);
 
@@ -59,13 +59,18 @@ int main(){
     if (frame_ptr->empty())
       break;
 
+    // Display the resulting frame
+    imshow( "Frame", *frame_ptr );
+
     // cout << save_path + to_string(frame_count) + ".png" << endl;
-    cv::imwrite (save_path + to_string(frame_count) + ".png", *frame_ptr);
+    // cv::imwrite (save_path + to_string(frame_count) + ".png", *frame_ptr);
 
     // Press  ESC on keyboard to exit
     char c=(char)waitKey(25);
     if(c==27)
       break;
+    else if (c == 32)
+      cv::imwrite (save_path + to_string(frame_count) + ".png", *frame_ptr);
 
     frame_count++;
 
