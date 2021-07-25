@@ -16,12 +16,12 @@ int main(){
   // cap(file_name); 
 
   // open webcam device
-  int deviceID = 4;
+  int deviceID = 0;
   int apiID = cv::CAP_V4L2;
   cap.open(deviceID, apiID);
 
   //check backend api name
-  std::cout << cap.getBackendName() << std::endl;
+  // std::cout << cap.getBackendName() << std::endl;
 
   // Check if camera opened successfully
   if(!cap.isOpened()){
