@@ -23,3 +23,9 @@ TARGET_LINK_LIBRARIES(create_marker ${OpenCV_LIBS})
 
 ADD_EXECUTABLE(optical_flow src/optical_flow.cpp)
 TARGET_LINK_LIBRARIES(optical_flow ${OpenCV_LIBS})
+
+ADD_EXECUTABLE(warp_image src/warp_image.cpp)
+TARGET_LINK_LIBRARIES(warp_image ${OpenCV_LIBS})
+
+ADD_EXECUTABLE(warp_video src/warp_video.cpp)
+TARGET_LINK_LIBRARIES(warp_video ${OpenCV_LIBS})
