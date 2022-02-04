@@ -4,6 +4,7 @@ PROJECT(display_video)
 set(CMAKE_CXX_STANDARD 17)
 
 find_package( OpenCV REQUIRED )
+find_package(fmt)
 
 include_directories( ${OpenCV_INCLUDE_DIRS} )
 
@@ -18,8 +19,11 @@ TARGET_LINK_LIBRARIES(save_video ${OpenCV_LIBS})
 ADD_EXECUTABLE(detect_marker src/detect_marker.cpp)
 TARGET_LINK_LIBRARIES(detect_marker ${OpenCV_LIBS})
 
-ADD_EXECUTABLE(create_marker src/create_marker.cpp)
-TARGET_LINK_LIBRARIES(create_marker ${OpenCV_LIBS})
+ADD_EXECUTABLE(create_single_marker src/create_single_marker.cpp)
+TARGET_LINK_LIBRARIES(create_single_marker ${OpenCV_LIBS})
+
+ADD_EXECUTABLE(create_marker_board src/create_marker_board.cpp)
+TARGET_LINK_LIBRARIES(create_marker_board ${OpenCV_LIBS} fmt::fmt)
 
 ADD_EXECUTABLE(optical_flow src/optical_flow.cpp)
 TARGET_LINK_LIBRARIES(optical_flow ${OpenCV_LIBS})
