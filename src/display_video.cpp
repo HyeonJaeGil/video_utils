@@ -16,7 +16,7 @@ int main(){
   // cap(file_name); 
 
   // open webcam device
-  int deviceID = 0;
+  int deviceID = 4;
   int apiID = cv::CAP_V4L2;
   cap.open(deviceID, apiID);
 
@@ -34,6 +34,8 @@ int main(){
   cap.set(cv::CAP_PROP_FRAME_WIDTH, 640);
   cap.set(cv::CAP_PROP_FRAME_HEIGHT, 480);
   cap.set(cv::CAP_PROP_FPS, 30);
+  // cap.set(cv::CAP_PROP_EXPOSURE, 0.033);
+  cap.set(cv::CAP_PROP_GAIN, 30);
   // cap.set(cv::CAP_PROP_MONOCHROME, true);
 
   while(cap.grab()){
